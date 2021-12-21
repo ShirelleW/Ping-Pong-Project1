@@ -39,6 +39,13 @@ class Ball extends Rect{
     }
 }
 
+class Player extends Rect {
+    constructor(){
+        super(20, 100)
+        this.score = 0 ;
+    }
+}
+
 class Pong{
     constructor(canvas){
         this._canvas = canvas;
@@ -49,7 +56,18 @@ class Pong{
         this.ball.pos.y = 50; 
         this.ball.vel.x = 100; 
         this.ball.vel.y = 100; 
-
+        
+        //creating two players
+        this.players = [
+            new Player,
+            new Player
+        ]
+        //positioning the two players
+        this.players[0].pos.x = 40; 
+        this.players[1].pos.x = this._canvas.width - 40; 
+        this.players.forEach(player => {
+            player.pos.y = this._canvas.height/2; 
+        })
 
         //begin to animate the ball, movement of ball is relative to the delta time of the update method
         let lastTime;
@@ -64,6 +82,20 @@ class Pong{
         };
         callback();
     }
+    draw(){
+       this._context.fillStyle = "#17F7F7"
+       this._context.fillRect(0, 0, this._canvas.width, this._canvas.height)
+       
+       this.drawRect(this.ball)
+       this.players.forEach(player => this.drawRect(player))
+    }
+
+    drawRect(rect){
+        
+        this._context.fillStyle = "#0145FB"
+        this._context.fillRect(rect.left, rect.top, rect.size.x, rect.size.y)
+    }
+
     update(dt){
         this.ball.pos.x += this.ball.vel.x * dt;
         this.ball.pos.y += this.ball.vel.y * dt; 
@@ -75,13 +107,8 @@ class Pong{
         if(this.ball.top < 0 || this.ball.bottom > this._canvas.height){
             this.ball.vel.y = -this.ball.vel.y
         }
-    
-       this._context.fillStyle = "#17F7F7"
-       this._context.fillRect(0, 0, this._canvas.width, this._canvas.height)
-    
-        //ball 
-       this._context.fillStyle = "#0145FB"
-       this._context.fillRect(this.ball.pos.x, this.ball.pos.y, this.ball.size.x, this.ball.size.y)
+
+        this.draw()
     }
 }
 
