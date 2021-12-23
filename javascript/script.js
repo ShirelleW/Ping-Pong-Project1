@@ -60,6 +60,7 @@ class Pong{
     constructor(canvas){
         this._canvas = canvas;
         this._context = canvas.getContext("2d")
+       
 
         this.ball = new Ball;  
 
@@ -175,23 +176,38 @@ class Pong{
         }
     }
 
+    restart(){
+        console.log("test")
+        this.players[0].score === 0; 
+        this.players[1].score === 0; 
+
+        document.getElementById("modal").style.display="none"
+        this.reset(); 
+    }
     update(dt){
         this.ball.pos.x += this.ball.vel.x * dt;
         this.ball.pos.y += this.ball.vel.y * dt; 
     
-        //if ball hits canvas borders, reverse velocity
+        
         //Keeping track of score
         if (this.ball.left < 0 || this.ball.right > this._canvas.width){
             const playerId = this.ball.vel.x < 0 | 0; 
             this.players[playerId].score++;
+
+            if(this.players[playerId].score === 5){
+                document.getElementById("modal").style.display="flex";  
+            }
+
             this.reset();
         }
+
+        //if ball hits canvas borders, reverse velocity
         if(this.ball.top < 0 || this.ball.bottom > this._canvas.height){
             this.ball.vel.y = -this.ball.vel.y
         }
 
         //this makes computer follow ball - very unfair AI 
-        this.players[1].pos.y = this.ball.pos.y
+        this.players[1].pos.y = this.ball.pos.y //try giving it a maxspeed 
 
         this.players.forEach(player => this.collide(player, this.ball))
         this.draw()
@@ -203,6 +219,18 @@ const pong = new Pong(canvas);
 
 // allow player 1 movement by mouse
 canvas.addEventListener("mousemove", event => pong.players[0].pos.y = event.offsetY)
+
 canvas.addEventListener("click", event => {
     pong.start();
 }); 
+
+document.getElementById("pa").addEventListener("click", () => {
+    console.log("test")
+    console.log(pong.players[1].score)
+        pong.players[0].score = 0; 
+        pong.players[1].score = 0; 
+        console.log(pong.players[1].score)
+
+    document.getElementById("modal").style.display="none"
+    pong.reset(); 
+})

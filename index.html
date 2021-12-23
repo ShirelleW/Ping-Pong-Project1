@@ -6,9 +6,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ping Pong</title>
     <link rel="stylesheet" href="css/style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@300;700&display=swap" rel="stylesheet">
 </head>
 <body>
+    <embed name="pongmusic" src="audio/ping-pong.mp3" loop="true" hidden="true" autostart="true">
+
+    <div id= "modal">
+        <h1>Game Over</h1>
+        <button id="pa">Play Again?</button>
+    </div>
     <canvas id="pong" width="600" height="400"></canvas>
+
     <script src="javascript/script.js"></script>
 </body>
 </html>
