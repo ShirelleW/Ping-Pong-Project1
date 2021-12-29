@@ -206,8 +206,9 @@ class Pong{
             this.ball.vel.y = -this.ball.vel.y
         }
 
-        //this makes computer follow ball - very unfair AI 
-        this.players[1].pos.y = this.ball.pos.y //try giving it a maxspeed 
+        //this makes computer follow ball; given a max speed for fair play 
+        const speed = 1.17;
+        this.players[1].pos.y = this.ball.pos.y * speed; 
 
         this.players.forEach(player => this.collide(player, this.ball))
         this.draw()
