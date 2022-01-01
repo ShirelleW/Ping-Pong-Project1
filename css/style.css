@@ -19,6 +19,20 @@ body{
     font-size: 50px;
     font-family: 'Comic Neue', cursive;
 }
+
+#modal2{
+    position: absolute;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0,0,0,0.3);
+    width: 100vw; 
+    height: 100vh;
+    font-size: 50px;
+    font-family: 'Comic Neue', cursive;
+}
+
+
 .title{
     display: flex;
     justify-content: center;

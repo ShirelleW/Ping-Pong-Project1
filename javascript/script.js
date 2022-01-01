@@ -194,8 +194,10 @@ class Pong{
             const playerId = this.ball.vel.x < 0 | 0; 
             this.players[playerId].score++;
 
-            if(this.players[playerId].score === 5){
+            if(this.players[1].score === 5){
                 document.getElementById("modal").style.display="flex";  
+            } else if (this.players[0].score === 5){
+                document.getElementById("modal2").style.display="flex"; 
             }
 
             this.reset();
@@ -206,7 +208,7 @@ class Pong{
             this.ball.vel.y = -this.ball.vel.y
         }
 
-        //this makes computer follow ball; given a max speed for fair play 
+        //this makes computer follow ball; given a max speed for "fair" play 
         const speed = 1.17;
         this.players[1].pos.y = this.ball.pos.y * speed; 
 
@@ -225,13 +227,22 @@ canvas.addEventListener("click", event => {
     pong.start();
 }); 
 
+//reset if computer wins
 document.getElementById("pa").addEventListener("click", () => {
-    console.log("test")
-    console.log(pong.players[1].score)
         pong.players[0].score = 0; 
         pong.players[1].score = 0; 
-        console.log(pong.players[1].score)
+        
 
     document.getElementById("modal").style.display="none"
+    pong.reset(); 
+})
+
+//reset if player wins
+document.getElementById("pa2").addEventListener("click", () => {
+    
+        pong.players[0].score = 0; 
+        pong.players[1].score = 0; 
+
+    document.getElementById("modal2").style.display="none"
     pong.reset(); 
 })
