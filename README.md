@@ -12,6 +12,8 @@ fifth commit- added game over and play again. Added music to the html page.
 
 sixth commit- made unfair AI into an almost fair AI by multiplying paddle following ball position times speed 
 
+seventh commit- added a you win screen if the user wins the game and play again button. 
+
 -----What I've Learned ------
 forEach - applies a function one by one to each item in an array
 map - creates a new array from calling a function for every array element.
@@ -28,3 +30,8 @@ https://www.youtube.com/watch?v=djiHm61y8P4
 https://www.youtube.com/watch?v=nl0KXCa5pJk
 https://www.youtube.com/watch?v=ju09womACpQ&t=1634s
 https://www.youtube.com/watch?v=6HkyaKFwGAI
+
+
+
+-----Website Link-----
+https://ecstatic-knuth-bf218a.netlify.app
